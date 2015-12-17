@@ -15,7 +15,7 @@ public class OAUTHHelper
         case Begin, GrantRequested, CodeGiven, AccessTokenAcquired
     }
     
-    static let REDIRECT_URI : String = "video-test2://home"
+    static let REDIRECT_URI : String = "auth-app://home"
     static var ACCESS_TOKEN : String?
     static var State_ : STATE = STATE.Begin
     

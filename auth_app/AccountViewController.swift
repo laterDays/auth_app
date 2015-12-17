@@ -31,6 +31,6 @@ class AccountViewController : UIViewController {
     }
     
     @IBAction func register(sender: AnyObject) {
-        OAUTHHelper.SendData(<#T##url: String##String#>, method: <#T##String#>, requestContentType: <#T##String#>)
+        OAUTHHelper.SendData("https://auth-api-dev.herokuapp.com/users?email=admin@site.com", method: "POST", requestContentType: "application/json; charset=utf-8")
     }
 }

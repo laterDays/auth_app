@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A2B56249422D93617CA2D04 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19333CA412AC1B0F8D986212 /* libPods.a */; };
 		A23923121C126FD400995625 /* OAUTHHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23923111C126FD400995625 /* OAUTHHelper.swift */; };
 		A24AA97A1C0F5D0800FAE7F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24AA9791C0F5D0800FAE7F5 /* AppDelegate.swift */; };
 		A24AA97C1C0F5D0800FAE7F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24AA97B1C0F5D0800FAE7F5 /* ViewController.swift */; };
@@ -22,6 +21,7 @@
 		A292B9131C21B312002A004B /* CONFIG_VARS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A292B9121C21B312002A004B /* CONFIG_VARS.swift */; };
 		A296FD0A1C173298003E218E /* podfile in Resources */ = {isa = PBXBuildFile; fileRef = A296FD091C173298003E218E /* podfile */; };
 		A2E0278B1C173B9800F6DF15 /* AWSS3Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E0278A1C173B9800F6DF15 /* AWSS3Helper.swift */; };
+		A3DF05486BBD1B71330A4679 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8FA27680DC50CF5972BBB2E /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,9 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		19333CA412AC1B0F8D986212 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		61CF0D44CFDF16FE7825828D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		650A70386D5E853A3DC51F5E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		3E94E37869ADFC19D1053C09 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A23923111C126FD400995625 /* OAUTHHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAUTHHelper.swift; sourceTree = "<group>"; };
 		A24AA9761C0F5D0800FAE7F5 /* auth_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = auth_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A24AA9791C0F5D0800FAE7F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +64,8 @@
 		A296FD091C173298003E218E /* podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A2E0278A1C173B9800F6DF15 /* AWSS3Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSS3Helper.swift; sourceTree = "<group>"; };
 		A2E0278D1C17532F00F6DF15 /* AWS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AWS-Bridging-Header.h"; sourceTree = "<group>"; };
+		C084C5A68F1F91C208545C4F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		F8FA27680DC50CF5972BBB2E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A2B56249422D93617CA2D04 /* libPods.a in Frameworks */,
+				A3DF05486BBD1B71330A4679 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,14 +94,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9E70F611981088BE1BBB3FB8 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				19333CA412AC1B0F8D986212 /* libPods.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		A24AA96D1C0F5D0800FAE7F5 = {
 			isa = PBXGroup;
 			children = (
@@ -111,8 +103,8 @@
 				A24AA98D1C0F5D0800FAE7F5 /* auth_appTests */,
 				A24AA9981C0F5D0800FAE7F5 /* auth_appUITests */,
 				A24AA9771C0F5D0800FAE7F5 /* Products */,
-				BFF876DCF46805A3332FF204 /* Pods */,
-				9E70F611981088BE1BBB3FB8 /* Frameworks */,
+				CD079D0A3AED92ADF69CA42C /* Pods */,
+				DB0BEFFCEF63ED95CACA81EF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -163,13 +155,21 @@
 			path = auth_appUITests;
 			sourceTree = "<group>";
 		};
-		BFF876DCF46805A3332FF204 /* Pods */ = {
+		CD079D0A3AED92ADF69CA42C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				61CF0D44CFDF16FE7825828D /* Pods.debug.xcconfig */,
-				650A70386D5E853A3DC51F5E /* Pods.release.xcconfig */,
+				C084C5A68F1F91C208545C4F /* Pods.debug.xcconfig */,
+				3E94E37869ADFC19D1053C09 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		DB0BEFFCEF63ED95CACA81EF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F8FA27680DC50CF5972BBB2E /* libPods.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -505,12 +505,12 @@
 		};
 		A24AA99F1C0F5D0800FAE7F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 61CF0D44CFDF16FE7825828D /* Pods.debug.xcconfig */;
+			baseConfigurationReference = C084C5A68F1F91C208545C4F /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = auth_app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = laterDays.auth_app;
+				PRODUCT_BUNDLE_IDENTIFIER = "laterDays.auth-app";
 				PRODUCT_NAME = auth_app;
 				SWIFT_OBJC_BRIDGING_HEADER = "auth_app/AWS-Bridging-Header.h";
 			};
@@ -518,12 +518,12 @@
 		};
 		A24AA9A01C0F5D0800FAE7F5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 650A70386D5E853A3DC51F5E /* Pods.release.xcconfig */;
+			baseConfigurationReference = 3E94E37869ADFC19D1053C09 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = auth_app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = laterDays.auth_app;
+				PRODUCT_BUNDLE_IDENTIFIER = "laterDays.auth-app";
 				PRODUCT_NAME = auth_app;
 				SWIFT_OBJC_BRIDGING_HEADER = "auth_app/AWS-Bridging-Header.h";
 			};
