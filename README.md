@@ -1,4 +1,5 @@
 # AUTH_APP 
+## AUTH_API - https://github.com/laterDays/auth_api
 
 The iOS app accompaniment for AUTH_API (https://github.com/laterDays/auth_api). This app demonstrates OAUTH communication with a Rails server (AUTH_API) which uses developer authentication to pass AWS Congnito credentials to the iOS application.
 

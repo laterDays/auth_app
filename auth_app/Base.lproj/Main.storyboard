@@ -25,11 +25,21 @@
                                     <action selector="testOAUTH:" destination="fjw-7P-mbe" eventType="touchUpInside" id="mRT-VG-B7g"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6MH-VH-t86">
+                                <rect key="frame" x="263" y="239" width="57" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Register"/>
+                                <connections>
+                                    <action selector="register:" destination="fjw-7P-mbe" eventType="touchUpInside" id="XVY-xm-wq5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="N7H-mA-kvs" firstAttribute="centerX" secondItem="eFA-4D-x3l" secondAttribute="centerX" id="96R-fr-8YK"/>
+                            <constraint firstItem="6MH-VH-t86" firstAttribute="centerX" secondItem="eFA-4D-x3l" secondAttribute="centerX" id="9PI-Bl-kXU"/>
+                            <constraint firstItem="6MH-VH-t86" firstAttribute="top" secondItem="N7H-mA-kvs" secondAttribute="bottom" constant="20" id="WZR-B2-O9x"/>
                             <constraint firstItem="N7H-mA-kvs" firstAttribute="centerY" secondItem="eFA-4D-x3l" secondAttribute="centerY" id="hvP-uf-3QW"/>
                         </constraints>
                     </view>

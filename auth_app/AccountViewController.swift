@@ -29,4 +29,8 @@ class AccountViewController : UIViewController {
     @IBAction func testOAUTH(sender: AnyObject) {
         OAUTHHelper.Auth1RequestGrant()
     }
+    
+    @IBAction func register(sender: AnyObject) {
+        OAUTHHelper.SendData(<#T##url: String##String#>, method: <#T##String#>, requestContentType: <#T##String#>)
+    }
 }
