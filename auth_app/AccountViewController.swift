@@ -9,8 +9,8 @@
 import UIKit
 
 class AccountViewController : UIViewController {
-    
-    @IBOutlet weak var userName: UITextField!
+
+    @IBOutlet weak var userEmail: UITextField!
     @IBOutlet weak var userPassword: UITextField!
 
     override func viewDidLoad() {
@@ -31,6 +31,20 @@ class AccountViewController : UIViewController {
     }
     
     @IBAction func register(sender: AnyObject) {
-        OAUTHHelper.SendData("https://auth-api-dev.herokuapp.com/users?email=admin@site.com", method: "POST", requestContentType: "application/json; charset=utf-8")
+        if let email = userEmail.text
+        {
+            if let pass = userPassword.text
+            {
+                let user_data : NSDictionary =
+                [
+                    "email": "\(email)",
+                    "password": "\(pass)"
+                ];
+                let user : NSMutableDictionary = NSMutableDictionary()
+                user.setValue(user_data, forKey: "user")
+
+                OAUTHHelper.SendData("https://auth-api-dev.herokuapp.com/users?", dataDictionary: user, method: "POST", requestContentType: "application/json; charset=utf-8")
+            }
+        }
     }
 }

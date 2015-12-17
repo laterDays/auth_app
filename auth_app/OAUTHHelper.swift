@@ -24,7 +24,7 @@ public class OAUTHHelper
         State_ = STATE.Begin
     }
 
-    public static func SendData (url : String, method : String, requestContentType : String) -> NSString?
+    public static func SendData (url : String, dataDictionary : NSDictionary?, method : String, requestContentType : String) -> NSString?
     {
         if let url_ = NSURL(string: url)
         {
@@ -32,6 +32,24 @@ public class OAUTHHelper
             request.HTTPMethod = method
             request.setValue(requestContentType, forHTTPHeaderField: "Content-Type")
             
+            if let dataDictionary_ = dataDictionary
+            {
+                var data : NSData?
+                do
+                {
+                    data = try NSJSONSerialization.dataWithJSONObject(dataDictionary_, options: NSJSONWritingOptions.init(rawValue: 0))
+                }
+                catch
+                {
+                    
+                }
+                if let data_ = data
+                {
+                    request.HTTPBody = data_
+                }
+            }
+            print("[ ] OAUTHHelper.SendData() request: \(request.URL)")
+
             var data_string : NSString?
             let session : NSURLSession = NSURLSession.sharedSession()
             let task = session.dataTaskWithRequest(request, completionHandler: { data, response, error -> Void in

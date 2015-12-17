@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Account View Controller-->
@@ -18,15 +19,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N7H-mA-kvs">
-                                <rect key="frame" x="265" y="195" width="52" height="30"/>
+                                <rect key="frame" x="271" y="383" width="52" height="30"/>
                                 <animations/>
                                 <state key="normal" title="OAUTH"/>
                                 <connections>
                                     <action selector="testOAUTH:" destination="fjw-7P-mbe" eventType="touchUpInside" id="mRT-VG-B7g"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rgd-Iw-O6E">
+                                <rect key="frame" x="252" y="239" width="97" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sVv-iV-m3t">
+                                <rect key="frame" x="252" y="285" width="97" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6MH-VH-t86">
-                                <rect key="frame" x="263" y="239" width="57" height="30"/>
+                                <rect key="frame" x="272" y="338" width="57" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Register"/>
                                 <connections>
@@ -37,12 +50,32 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="N7H-mA-kvs" firstAttribute="centerX" secondItem="eFA-4D-x3l" secondAttribute="centerX" id="96R-fr-8YK"/>
-                            <constraint firstItem="6MH-VH-t86" firstAttribute="centerX" secondItem="eFA-4D-x3l" secondAttribute="centerX" id="9PI-Bl-kXU"/>
-                            <constraint firstItem="6MH-VH-t86" firstAttribute="top" secondItem="N7H-mA-kvs" secondAttribute="bottom" constant="20" id="WZR-B2-O9x"/>
-                            <constraint firstItem="N7H-mA-kvs" firstAttribute="centerY" secondItem="eFA-4D-x3l" secondAttribute="centerY" id="hvP-uf-3QW"/>
+                            <constraint firstItem="N7H-mA-kvs" firstAttribute="top" secondItem="6MH-VH-t86" secondAttribute="bottom" constant="20" id="3qI-nM-45d"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rgd-Iw-O6E" secondAttribute="trailing" constant="20" id="EYo-DN-wDy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sVv-iV-m3t" secondAttribute="trailing" constant="20" id="GfC-gF-InW"/>
+                            <constraint firstItem="sVv-iV-m3t" firstAttribute="leading" secondItem="eFA-4D-x3l" secondAttribute="leadingMargin" constant="20" id="IFx-At-ei7"/>
+                            <constraint firstItem="sVv-iV-m3t" firstAttribute="top" secondItem="rgd-Iw-O6E" secondAttribute="bottom" constant="20" id="JfQ-Ow-Gkr"/>
+                            <constraint firstItem="rgd-Iw-O6E" firstAttribute="top" secondItem="faV-Y4-ArI" secondAttribute="bottom" constant="100" id="PIN-nx-NZl"/>
+                            <constraint firstItem="rgd-Iw-O6E" firstAttribute="leading" secondItem="eFA-4D-x3l" secondAttribute="leadingMargin" constant="20" id="SYD-kK-dID"/>
+                            <constraint firstItem="rgd-Iw-O6E" firstAttribute="centerY" secondItem="eFA-4D-x3l" secondAttribute="centerY" id="Syp-fr-Cgu"/>
+                            <constraint firstItem="6MH-VH-t86" firstAttribute="top" secondItem="sVv-iV-m3t" secondAttribute="bottom" constant="20" id="ZxM-R2-sNK"/>
+                            <constraint firstItem="sVv-iV-m3t" firstAttribute="top" secondItem="rgd-Iw-O6E" secondAttribute="bottom" constant="20" id="du0-aO-JgU"/>
+                            <constraint firstItem="N7H-mA-kvs" firstAttribute="centerX" secondItem="eFA-4D-x3l" secondAttribute="centerX" id="j0b-Fr-D5p"/>
+                            <constraint firstItem="rgd-Iw-O6E" firstAttribute="centerX" secondItem="eFA-4D-x3l" secondAttribute="centerX" id="yKG-cR-QG7"/>
+                            <constraint firstItem="6MH-VH-t86" firstAttribute="centerX" secondItem="eFA-4D-x3l" secondAttribute="centerX" id="z2J-UX-LJ7"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Syp-fr-Cgu"/>
+                                <exclude reference="yKG-cR-QG7"/>
+                                <exclude reference="du0-aO-JgU"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="userEmail" destination="rgd-Iw-O6E" id="HyR-nB-7en"/>
+                        <outlet property="userPassword" destination="sVv-iV-m3t" id="ujV-68-Suf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1ol-xM-adN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
