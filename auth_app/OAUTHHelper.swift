@@ -24,7 +24,7 @@ public class OAUTHHelper
         State_ = STATE.Begin
     }
 
-    public static func SendData (url : String, dataDictionary : NSDictionary?, method : String, requestContentType : String) -> NSString?
+    public static func SendData (url : String, dataDictionary : NSDictionary?, method : String, requestContentType : String, operationOnResponse: (NSData)->Void) -> AnyObject?
     {
         if let url_ = NSURL(string: url)
         {
@@ -50,28 +50,55 @@ public class OAUTHHelper
             }
             print("[ ] OAUTHHelper.SendData() request: \(request.URL)")
 
-            var data_string : NSString?
             let session : NSURLSession = NSURLSession.sharedSession()
             let task = session.dataTaskWithRequest(request, completionHandler: { data, response, error -> Void in
                 print("[ ] OAUTHHelper.SendData() Response: \(response)")
-                if data != nil
+                if let data_ = data
                 {
-                    data_string = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                    print("[ ] OAUTHHelper.Auth2GetToken() Body: \(data_string)")
+                    print("[ ] OAUTHHelper.SendData() Body: \(NSString(data: data_, encoding: NSUTF8StringEncoding))")
+                    operationOnResponse(data_)
                 }
                 else
                 {
-                    print("[ ] OAUTHHelper.Auth2GetToken() Body: no response.")
+                    print("[ ] OAUTHHelper.SendData() Body: no response.")
                 }
             })
             task.resume()
-            
-            return data_string
         }
         else
         {
             print("[ ] OAUTHHelper.SendData() url error.")
-            return nil
+        }
+        return nil
+    }
+    
+    public static func Auth0RegisterUser (userEmail : String, userPassword : String)
+    {
+        let user_data : NSDictionary =
+        [
+            "email": "\(userEmail)",
+            "password": "\(userPassword)"
+        ];
+        let user : NSMutableDictionary = NSMutableDictionary()
+        user.setValue(user_data, forKey: "user")
+        
+        OAUTHHelper.SendData("https://auth-api-dev.herokuapp.com/users?", dataDictionary: user, method: "POST", requestContentType: "application/json; charset=utf-8", operationOnResponse: Auth0UserRegistered)
+    }
+    
+    private static func Auth0UserRegistered (data : NSData)
+    {
+        if let response = GetObject(data) as! NSDictionary?
+        {
+            print("[ ] OAUTHHelper.Auth0UserRegistered() dictionary: \(response)")
+            if response["state"]!["code"] as! Int == 0
+            {
+                print("[ ] OAUTHHelper.Auth0UserRegistered() email: \(response["data"]!["email"])")
+            }
+            
+        }
+        else
+        {
+            print("[ ] OAUTHHelper.Auth0UserRegistered() couldn't convert response to dictionary.")
         }
     }
     
@@ -271,25 +298,7 @@ public class OAUTHHelper
             {
                 // check if it can be read
                 if let JSON: AnyObject = try NSJSONSerialization.JSONObjectWithData(JSON_data_, options: NSJSONReadingOptions.MutableContainers) {
-                    
-                    // Check if it can be converted to NSDictionary
-                    if let JSON_dictionary = JSON as? NSDictionary
-                    {
-                        print("[ ] OAUTHHelper.GetObject(), dictionary: \(JSON_dictionary)")
-                        return JSON_dictionary
-                    }
-                    else
-                    {
-                        if let JSON_array = JSON as? NSArray
-                        {
-                            print("[ ] OAUTHHelper.GetObject(), array: \(JSON_array)")
-                            return JSON_array
-                        }
-                        
-                        if let JSON_string = NSString(data: JSON_data_, encoding: NSUTF8StringEncoding) {
-                            print("[ ] OAUTHHelper.GetObject(), no dictionary for: \(JSON_string)")
-                        }
-                    }
+                    return JSON
                 }
                 else {
                     print("[ ] OAUTHHelper.GetObject(), cannot parse: \(JSON_data_)")

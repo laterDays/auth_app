@@ -35,15 +35,7 @@ class AccountViewController : UIViewController {
         {
             if let pass = userPassword.text
             {
-                let user_data : NSDictionary =
-                [
-                    "email": "\(email)",
-                    "password": "\(pass)"
-                ];
-                let user : NSMutableDictionary = NSMutableDictionary()
-                user.setValue(user_data, forKey: "user")
-
-                OAUTHHelper.SendData("https://auth-api-dev.herokuapp.com/users?", dataDictionary: user, method: "POST", requestContentType: "application/json; charset=utf-8")
+                OAUTHHelper.Auth0RegisterUser(email, userPassword: pass)
             }
         }
     }
