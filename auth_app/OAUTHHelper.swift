@@ -9,21 +9,59 @@
 import Foundation
 import UIKit
 
+public protocol OAUTHHelperDelegate
+{
+    func newLoginStatus (status : OAUTHHelper.LOGIN_STATUS, message : String)
+}
+
 public class OAUTHHelper
 {
     enum STATE {
-        case Begin, GrantRequested, CodeGiven, AccessTokenAcquired
+        case Begin, DelegateIsSet, UserRegistered, GrantRequested, CodeGiven, AccessTokenAcquired
+    }
+    public enum LOGIN_STATUS : String {
+        case Success, Failure
     }
     
     static let REDIRECT_URI : String = "auth-app://home"
     static var ACCESS_TOKEN : String?
     static var State_ : STATE = STATE.Begin
+    static var delegate : OAUTHHelperDelegate?
+    
+    public static func Setup (delegate : OAUTHHelperDelegate)
+    {
+        if State_ == STATE.Begin
+        {
+            self.delegate = delegate
+            State_ = STATE.DelegateIsSet
+        }
+        else
+        {
+            print("[ ] OAUTHHelper.Setup() called in incorrect state: \(State_)")
+        }
+    }
     
     public static func Auth0ResetState ()
     {
-        State_ = STATE.Begin
+        if delegate != nil
+        {
+            State_ = STATE.DelegateIsSet
+        }
+        else
+        {
+            State_ = STATE.Begin
+        }
     }
 
+    /*
+        SendData () - sends data to a url with the following parameters. The data that is returned will
+        be handled by the last parameter.
+            url : String - location to send data (e.g. "https://sub.domain.com/place?")
+            dataDictionary : NSDictionary? - data you would like to send to the url
+            method : String - (e.g. "POST", "GET", ...)
+            requestContentType : String - (e.g. "application/json; charset=utf-8")
+            operationOnResponse: (NSData)->Void) -> AnyObject - function that will handle response.
+    */
     public static func SendData (url : String, dataDictionary : NSDictionary?, method : String, requestContentType : String, operationOnResponse: (NSData)->Void) -> AnyObject?
     {
         if let url_ = NSURL(string: url)
@@ -72,33 +110,63 @@ public class OAUTHHelper
         return nil
     }
     
-    public static func Auth0RegisterUser (userEmail : String, userPassword : String)
+    
+    /*
+        Auth0RegisterUser() - register a new user.
+            userEmail : String
+            userPassword : String
+
+    */
+    public static func Auth1RegisterUser (userEmail : String, userPassword : String)
     {
-        let user_data : NSDictionary =
-        [
-            "email": "\(userEmail)",
-            "password": "\(userPassword)"
-        ];
-        let user : NSMutableDictionary = NSMutableDictionary()
-        user.setValue(user_data, forKey: "user")
-        
-        OAUTHHelper.SendData("https://auth-api-dev.herokuapp.com/users?", dataDictionary: user, method: "POST", requestContentType: "application/json; charset=utf-8", operationOnResponse: Auth0UserRegistered)
+        if State_ == STATE.DelegateIsSet
+        {
+            let user_data : NSDictionary =
+            [
+                "email": "\(userEmail)",
+                "password": "\(userPassword)"
+            ];
+            let user : NSMutableDictionary = NSMutableDictionary()
+            user.setValue(user_data, forKey: "user")
+            
+            print("[ ] OAUTHHelper.Auth1RegisterUser() sending: \(user_data)")
+            
+            OAUTHHelper.SendData("https://auth-api-dev.herokuapp.com/users?", dataDictionary: user, method: "POST", requestContentType: "application/json; charset=utf-8", operationOnResponse: Auth0UserRegistered)
+        }
+        else
+        {
+            print("[ ] OAUTHHelper.Auth1RegisterUser() called in incorrect state: \(State_)")
+        }
     }
     
+    /*
+        Auth0UserRegistered () - handles the data recieved by Auth0RegisterUser().
+    */
     private static func Auth0UserRegistered (data : NSData)
     {
         if let response = GetObject(data) as! NSDictionary?
         {
             print("[ ] OAUTHHelper.Auth0UserRegistered() dictionary: \(response)")
-            if response["state"]!["code"] as! Int == 0
+            let code = response["state"]!["code"] as! Int
+            switch code
             {
+            case 0:
                 print("[ ] OAUTHHelper.Auth0UserRegistered() email: \(response["data"]!["email"])")
+                State_ = STATE.UserRegistered
+                delegate?.newLoginStatus(LOGIN_STATUS.Success, message: "User:\(response["data"]!["email"]) registered!")
+            case 1:
+                print("[ ] OAUTHHelper.Auth0UserRegistered() Error: \(response["state"]!["messages"])")
+                Auth0ResetState()
+                delegate?.newLoginStatus(LOGIN_STATUS.Success, message: "Error:\(response["state"]!["messages"])")
+            default:
+                 break
             }
-            
         }
         else
         {
-            print("[ ] OAUTHHelper.Auth0UserRegistered() couldn't convert response to dictionary.")
+            print("[ ] OAUTHHelper.Auth0UserRegistered() no dictionary.")
+            delegate?.newLoginStatus(LOGIN_STATUS.Failure, message: "Error: cannot create dictionary from response.")
+            Auth0ResetState()
         }
     }
     

@@ -46,6 +46,13 @@
                                     <action selector="register:" destination="fjw-7P-mbe" eventType="touchUpInside" id="XVY-xm-wq5"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWP-Aq-xA3">
+                                <rect key="frame" x="279" y="199" width="42" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -58,7 +65,9 @@
                             <constraint firstItem="rgd-Iw-O6E" firstAttribute="top" secondItem="faV-Y4-ArI" secondAttribute="bottom" constant="100" id="PIN-nx-NZl"/>
                             <constraint firstItem="rgd-Iw-O6E" firstAttribute="leading" secondItem="eFA-4D-x3l" secondAttribute="leadingMargin" constant="20" id="SYD-kK-dID"/>
                             <constraint firstItem="rgd-Iw-O6E" firstAttribute="centerY" secondItem="eFA-4D-x3l" secondAttribute="centerY" id="Syp-fr-Cgu"/>
+                            <constraint firstItem="FWP-Aq-xA3" firstAttribute="centerX" secondItem="eFA-4D-x3l" secondAttribute="centerX" id="Yqe-yA-Ss9"/>
                             <constraint firstItem="6MH-VH-t86" firstAttribute="top" secondItem="sVv-iV-m3t" secondAttribute="bottom" constant="20" id="ZxM-R2-sNK"/>
+                            <constraint firstItem="rgd-Iw-O6E" firstAttribute="top" secondItem="FWP-Aq-xA3" secondAttribute="bottom" constant="20" id="bPf-96-nh0"/>
                             <constraint firstItem="sVv-iV-m3t" firstAttribute="top" secondItem="rgd-Iw-O6E" secondAttribute="bottom" constant="20" id="du0-aO-JgU"/>
                             <constraint firstItem="N7H-mA-kvs" firstAttribute="centerX" secondItem="eFA-4D-x3l" secondAttribute="centerX" id="j0b-Fr-D5p"/>
                             <constraint firstItem="rgd-Iw-O6E" firstAttribute="centerX" secondItem="eFA-4D-x3l" secondAttribute="centerX" id="yKG-cR-QG7"/>
@@ -74,6 +83,7 @@
                     </view>
                     <connections>
                         <outlet property="userEmail" destination="rgd-Iw-O6E" id="HyR-nB-7en"/>
+                        <outlet property="userLoginStatus" destination="FWP-Aq-xA3" id="jqg-Od-klj"/>
                         <outlet property="userPassword" destination="sVv-iV-m3t" id="ujV-68-Suf"/>
                     </connections>
                 </viewController>

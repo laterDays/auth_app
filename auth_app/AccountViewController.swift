@@ -8,13 +8,15 @@
 
 import UIKit
 
-class AccountViewController : UIViewController {
+class AccountViewController : UIViewController, OAUTHHelperDelegate {
 
     @IBOutlet weak var userEmail: UITextField!
     @IBOutlet weak var userPassword: UITextField!
-
+    @IBOutlet weak var userLoginStatus: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        OAUTHHelper.Setup(self)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -35,8 +37,12 @@ class AccountViewController : UIViewController {
         {
             if let pass = userPassword.text
             {
-                OAUTHHelper.Auth0RegisterUser(email, userPassword: pass)
+                OAUTHHelper.Auth1RegisterUser(email, userPassword: pass)
             }
         }
+    }
+    
+    func newLoginStatus(status : OAUTHHelper.LOGIN_STATUS, message : String) {
+        userLoginStatus.text = status.rawValue
     }
 }
