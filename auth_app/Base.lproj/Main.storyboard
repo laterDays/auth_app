@@ -46,7 +46,7 @@
                                     <action selector="register:" destination="fjw-7P-mbe" eventType="touchUpInside" id="XVY-xm-wq5"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWP-Aq-xA3">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWP-Aq-xA3">
                                 <rect key="frame" x="279" y="199" width="42" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -62,7 +62,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="sVv-iV-m3t" secondAttribute="trailing" constant="20" id="GfC-gF-InW"/>
                             <constraint firstItem="sVv-iV-m3t" firstAttribute="leading" secondItem="eFA-4D-x3l" secondAttribute="leadingMargin" constant="20" id="IFx-At-ei7"/>
                             <constraint firstItem="sVv-iV-m3t" firstAttribute="top" secondItem="rgd-Iw-O6E" secondAttribute="bottom" constant="20" id="JfQ-Ow-Gkr"/>
-                            <constraint firstItem="rgd-Iw-O6E" firstAttribute="top" secondItem="faV-Y4-ArI" secondAttribute="bottom" constant="100" id="PIN-nx-NZl"/>
+                            <constraint firstItem="rgd-Iw-O6E" firstAttribute="top" secondItem="faV-Y4-ArI" secondAttribute="bottom" constant="150" id="PIN-nx-NZl"/>
                             <constraint firstItem="rgd-Iw-O6E" firstAttribute="leading" secondItem="eFA-4D-x3l" secondAttribute="leadingMargin" constant="20" id="SYD-kK-dID"/>
                             <constraint firstItem="rgd-Iw-O6E" firstAttribute="centerY" secondItem="eFA-4D-x3l" secondAttribute="centerY" id="Syp-fr-Cgu"/>
                             <constraint firstItem="FWP-Aq-xA3" firstAttribute="centerX" secondItem="eFA-4D-x3l" secondAttribute="centerX" id="Yqe-yA-Ss9"/>
@@ -70,6 +70,8 @@
                             <constraint firstItem="rgd-Iw-O6E" firstAttribute="top" secondItem="FWP-Aq-xA3" secondAttribute="bottom" constant="20" id="bPf-96-nh0"/>
                             <constraint firstItem="sVv-iV-m3t" firstAttribute="top" secondItem="rgd-Iw-O6E" secondAttribute="bottom" constant="20" id="du0-aO-JgU"/>
                             <constraint firstItem="N7H-mA-kvs" firstAttribute="centerX" secondItem="eFA-4D-x3l" secondAttribute="centerX" id="j0b-Fr-D5p"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FWP-Aq-xA3" secondAttribute="trailing" constant="20" id="l3u-va-9Db"/>
+                            <constraint firstItem="FWP-Aq-xA3" firstAttribute="leading" secondItem="eFA-4D-x3l" secondAttribute="leadingMargin" constant="20" id="o8v-s5-cqw"/>
                             <constraint firstItem="rgd-Iw-O6E" firstAttribute="centerX" secondItem="eFA-4D-x3l" secondAttribute="centerX" id="yKG-cR-QG7"/>
                             <constraint firstItem="6MH-VH-t86" firstAttribute="centerX" secondItem="eFA-4D-x3l" secondAttribute="centerX" id="z2J-UX-LJ7"/>
                         </constraints>

@@ -42,7 +42,31 @@ class AccountViewController : UIViewController, OAUTHHelperDelegate {
         }
     }
     
-    func newLoginStatus(status : OAUTHHelper.LOGIN_STATUS, message : String) {
-        userLoginStatus.text = status.rawValue
+    func newLoginStatus(status : OAUTHHelper.LOGIN_STATUS, messages : [String]) {
+        var style : STYLES.FontStyle?
+        switch status
+        {
+        case OAUTHHelper.LOGIN_STATUS.Success:
+            print("[ ] AccountViewController.newLoginStatus() success.")
+            style = STYLES.SUCCESS
+        case OAUTHHelper.LOGIN_STATUS.Failure:
+            print("[ ] AccountViewController.newLoginStatus() failure.")
+            style = STYLES.FAILURE
+        default:
+            print("[ ] AccountViewController.newLoginStatus() default.")
+            style = STYLES.WARNING
+        }
+        print("[ ] AccountViewController.newLoginStatus() login status: \(status), message: \(messages), style: \(style)")
+        NSOperationQueue.mainQueue().addOperationWithBlock({
+            var all_msg : String = "\r"
+            for msg in messages
+            {
+                all_msg += msg + "\r"
+            }
+            self.userLoginStatus.text = all_msg
+            self.userLoginStatus.textColor = style?.background_color
+            self.userLoginStatus.layer.backgroundColor = style?.color.CGColor
+            self.userLoginStatus.layer.cornerRadius = 7
+        })
     }
 }

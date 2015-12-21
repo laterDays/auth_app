@@ -11,7 +11,7 @@ import UIKit
 
 public protocol OAUTHHelperDelegate
 {
-    func newLoginStatus (status : OAUTHHelper.LOGIN_STATUS, message : String)
+    func newLoginStatus (status : OAUTHHelper.LOGIN_STATUS, messages : [String])
 }
 
 public class OAUTHHelper
@@ -34,10 +34,11 @@ public class OAUTHHelper
         {
             self.delegate = delegate
             State_ = STATE.DelegateIsSet
+            print("[ ] OAUTHHelper.Setup() delegate set up.")
         }
         else
         {
-            print("[ ] OAUTHHelper.Setup() called in incorrect state: \(State_)")
+            print("[ ] OAUTHHelper.Setup() called in incorrect state: \(State_).")
         }
     }
     
@@ -51,6 +52,7 @@ public class OAUTHHelper
         {
             State_ = STATE.Begin
         }
+        print("[ ] OAUTHHelper.Auth0ResetState() state set to \(State_).")
     }
 
     /*
@@ -153,11 +155,11 @@ public class OAUTHHelper
             case 0:
                 print("[ ] OAUTHHelper.Auth0UserRegistered() email: \(response["data"]!["email"])")
                 State_ = STATE.UserRegistered
-                delegate?.newLoginStatus(LOGIN_STATUS.Success, message: "User:\(response["data"]!["email"]) registered!")
+                delegate?.newLoginStatus(LOGIN_STATUS.Success, messages: ["\(response["data"]!["email"]) registered!"])
             case 1:
                 print("[ ] OAUTHHelper.Auth0UserRegistered() Error: \(response["state"]!["messages"])")
                 Auth0ResetState()
-                delegate?.newLoginStatus(LOGIN_STATUS.Success, message: "Error:\(response["state"]!["messages"])")
+                delegate?.newLoginStatus(LOGIN_STATUS.Failure, messages: response["state"]!["messages"] as! [String])
             default:
                  break
             }
@@ -165,7 +167,7 @@ public class OAUTHHelper
         else
         {
             print("[ ] OAUTHHelper.Auth0UserRegistered() no dictionary.")
-            delegate?.newLoginStatus(LOGIN_STATUS.Failure, message: "Error: cannot create dictionary from response.")
+            delegate?.newLoginStatus(LOGIN_STATUS.Failure, messages: ["Error: cannot create dictionary from response."])
             Auth0ResetState()
         }
     }
