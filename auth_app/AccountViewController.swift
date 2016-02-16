@@ -13,7 +13,7 @@ class AccountViewController : UIViewController, OAUTHHelperDelegate {
     @IBOutlet weak var userEmail: UITextField!
     @IBOutlet weak var userPassword: UITextField!
     @IBOutlet weak var userLoginStatus: UILabel!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         OAUTHHelper.Setup(self)
@@ -42,6 +42,17 @@ class AccountViewController : UIViewController, OAUTHHelperDelegate {
         }
     }
     
+    
+    @IBAction func login(sender: AnyObject) {
+        if let email = userEmail.text
+        {
+            if let pass = userPassword.text
+            {
+                OAUTHHelper.Auth2UserLogin(email, userPassword: pass)
+            }
+        }
+    }
+    
     func newLoginStatus(status : OAUTHHelper.LOGIN_STATUS, messages : [String]) {
         var style : STYLES.FontStyle?
         switch status
@@ -64,9 +75,7 @@ class AccountViewController : UIViewController, OAUTHHelperDelegate {
                 all_msg += msg + "\r"
             }
             self.userLoginStatus.text = all_msg
-            self.userLoginStatus.textColor = style?.background_color
-            self.userLoginStatus.layer.backgroundColor = style?.color.CGColor
-            self.userLoginStatus.layer.cornerRadius = 7
+            STYLES.SetLabelStyle(self.userLoginStatus, style: style!, invert: true)
         })
     }
 }

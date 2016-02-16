@@ -17,7 +17,7 @@ public protocol OAUTHHelperDelegate
 public class OAUTHHelper
 {
     enum STATE {
-        case Begin, DelegateIsSet, UserRegistered, GrantRequested, CodeGiven, AccessTokenAcquired
+        case Begin, DelegateIsSet, UserRegistered, UserLoggedIn, GrantRequested, CodeGiven, AccessTokenAcquired
     }
     public enum LOGIN_STATUS : String {
         case Success, Failure
@@ -168,6 +168,55 @@ public class OAUTHHelper
         {
             print("[ ] OAUTHHelper.Auth0UserRegistered() no dictionary.")
             delegate?.newLoginStatus(LOGIN_STATUS.Failure, messages: ["Error: cannot create dictionary from response."])
+            Auth0ResetState()
+        }
+    }
+    
+    public static func Auth2UserLogin (userEmail : String, userPassword : String)
+    {
+        if State_ == STATE.DelegateIsSet || State_ == STATE.UserRegistered
+        {
+            let user_data : NSDictionary =
+            [
+                "email": "\(userEmail)",
+                "password": "\(userPassword)"
+            ];
+            let user : NSMutableDictionary = NSMutableDictionary()
+            user.setValue(user_data, forKey: "user")
+            
+            print("[ ] OAUTHHelper.Auth2UserLogin() sending: \(user_data)")
+            
+            OAUTHHelper.SendData("https://auth-api-dev.herokuapp.com/users/sign_in?", dataDictionary: user, method: "POST", requestContentType: "application/json; charset=utf-8", operationOnResponse: Auth2UserLoggedIn)
+        }
+        else
+        {
+            print("[ ] OAUTHHelper.Auth2UserLogin() called in incorrect state: \(State_)")
+        }
+    }
+    
+    private static func Auth2UserLoggedIn (data : NSData)
+    {
+        if let response = GetObject(data) as! NSDictionary?
+        {
+            print("[ ] OAUTHHelper.Auth2UserLoggedIn() dictionary: \(response)")
+            let code = response["state"]!["code"] as! Int
+            switch code{
+            case 0:
+                print("[ ] OAUTHHelper.Auth2UserLoggedIn() email: \(response["data"]!["email"])")
+                State_ = STATE.UserLoggedIn
+                delegate?.newLoginStatus(LOGIN_STATUS.Success, messages: ["\(response["data"]!["email"]) logged in!"])
+            case 1:
+                print("[ ] OAUTHHelper.Auth2UserLoggedIn() Error: \(response["state"]!["messages"])")
+                Auth0ResetState()
+                delegate?.newLoginStatus(LOGIN_STATUS.Failure, messages: response["state"]!["messages"] as! [String])
+            default:
+                break
+            }
+            
+        }
+        else
+        {
+            print("[ ] OAUTHHelper.Auth2UserLoggedIn() no dictionary.")
             Auth0ResetState()
         }
     }
